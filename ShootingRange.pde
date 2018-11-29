@@ -1,18 +1,23 @@
 Reticle player;
 
-Duck[] ducks = new Duck[4];
+ArrayList<Duck> ducks = new ArrayList<Duck>();
+ArrayList<Bullet> clip = new ArrayList<Bullet>();
+int numDucks = 20;
+int score = 0;
+
 
 void setup() {
   // config
   noCursor();
-
+  textSize(32);
+  
   size(800, 600);
 
   player = new Reticle(width / 2, height /2);
 
   // make some ducks
-  for (int i = 0; i < ducks.length; i++) {
-    ducks[i] = new Duck(-i * 100, height / 2);
+  for (int i = 0; i < numDucks; i++) {
+    ducks.add(new Duck(-i * 100, height / 2));
   }
 }
 
@@ -26,4 +31,11 @@ void draw() {
 
   player.move(mouseX, mouseY);
   player.display();
+
+  fill(0);
+  text("Score: " + score, 50, 50);
+}
+
+void mousePressed() {
+  player.fire(ducks);
 }
