@@ -9,6 +9,9 @@ public class Duck {
   }
   
   void move() {
+    vel.x = random(0,15);
+    vel.y = random(-4,4);
+    pos.y = constrain(pos.y, 100, height-100);
     pos.add(vel);
     if(pos.x > width) {
       pos.x = 0;
@@ -16,7 +19,7 @@ public class Duck {
   }
   
   void display() {
-    fill(255, 255, 0); // rgb yellow
+    fill(200, 200, 0); // rgb yellow
     noStroke(); // turn of the border
     ellipse(pos.x, pos.y, w, h);
   }

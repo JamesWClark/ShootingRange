@@ -17,7 +17,7 @@ void setup() {
 
   // make some ducks
   for (int i = 0; i < numDucks; i++) {
-    ducks.add(new Duck(-i * 100, height / 2));
+    ducks.add(new Duck(-i * 100, (int)(random(100, height-100))));
   }
 }
 
