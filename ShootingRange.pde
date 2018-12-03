@@ -1,5 +1,5 @@
 Reticle player;
-
+PopupTarget popUp;
 ArrayList<Duck> ducks = new ArrayList<Duck>();
 ArrayList<Bullet> clip = new ArrayList<Bullet>();
 int numDucks = 20;
@@ -14,6 +14,8 @@ void setup() {
   size(800, 600);
 
   player = new Reticle(width / 2, height /2);
+  
+  popUp = new PopupTarget(200, 200);
 
   // make some ducks
   for (int i = 0; i < numDucks; i++) {
@@ -24,10 +26,15 @@ void setup() {
 void draw() {
   background(255); // white
 
+  popUp.move();
+  popUp.display();
+
   for (Duck d : ducks) {
     d.display();
     d.move();
   }
+  
+  
 
   player.move(mouseX, mouseY);
   player.display();
