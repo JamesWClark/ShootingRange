@@ -1,32 +1,34 @@
+int score = 0;
+ArrayList<AbstractTarget> targets = new ArrayList<AbstractTarget>();
 Reticle player;
 
-ArrayList<Duck> ducks = new ArrayList<Duck>();
-ArrayList<Bullet> clip = new ArrayList<Bullet>();
-int numDucks = 20;
-int score = 0;
-
+PopupMonster m;
 
 void setup() {
   // config
   noCursor();
   textSize(32);
-  
   size(800, 600);
 
+  
   player = new Reticle(width / 2, height /2);
 
-  // make some ducks
-  for (int i = 0; i < numDucks; i++) {
-    ducks.add(new Duck(-i * 100, (int)(random(100, height-100))));
+  // make targets
+  m = new PopupMonster(width / 2, height / 2);
+  targets.add(m);
+  
+  for (int i = 0; i < 10; i++) {
+    targets.add(new PopupTarget(i * 100, (int)(random(100, height-100))));
+    targets.add(new Duck(-i * 100, (int)(random(100, height-100))));
   }
 }
 
 void draw() {
   background(255); // white
 
-  for (Duck d : ducks) {
-    d.display();
-    d.move();
+  for (Sprite target : targets) {
+    target.display();
+    target.move();
   }
 
   player.move(mouseX, mouseY);
@@ -37,5 +39,5 @@ void draw() {
 }
 
 void mousePressed() {
-  player.fire(ducks);
+  player.fire(targets);
 }

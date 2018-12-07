@@ -1,10 +1,8 @@
-public class Duck {
-  private PVector pos;
+public class Duck extends AbstractTarget {
   private PVector vel;
-  private int w = 40, h = 40;
   
   public Duck(int x, int y) {
-    pos = new PVector(x, y);
+    super(x, y, 40, 40);
     vel = new PVector(5, 0);
   }
   
@@ -22,5 +20,10 @@ public class Duck {
     fill(200, 200, 0); // rgb yellow
     noStroke(); // turn of the border
     ellipse(pos.x, pos.y, w, h);
+  }
+  
+  // todo: implement circle hitbox
+  boolean hitBy(Reticle r) {
+    return false;
   }
 }

@@ -29,20 +29,23 @@ public class Reticle {
     
     mag.display();
   }
-  public void fire(ArrayList<Duck> ducks) {
+  
+  public void fire(ArrayList<AbstractTarget> targets) {
     // compare the target against the ducks...
     // if overlapping, destroy the duck
 
     if (mag.remove()) {
-      for (int i = 0; i < ducks.size(); i++) {
-        Duck duck = ducks.get(i);
-        float distance = dist(pos.x, pos.y, duck.pos.x, duck.pos.y);
-        int radius = duck.w / 2;
-        if (distance < radius) {
-          score++;
-          ducks.remove(duck);
+      for (int i = 0; i < targets.size(); i++) {
+        AbstractTarget s = (AbstractTarget)targets.get(i);
+        if(s.hitBy(this)) {
+          targets.remove(s);
         }
       }
     }
+  }
+  
+  // getter or accessor method
+  public PVector getPos() {
+    return pos;
   }
 }
